@@ -1,0 +1,19 @@
+Description: Force an nss flush to fix failure to join a Windows 7 or Windows 2008 machine to Samba domain
+Forwarded: no
+Author: rdratlos
+Origin: rdratlos, https://bugs.launchpad.net/ubuntu/+source/smbldap-tools/+bug/814898/+attachment/2226951/+files/smbldap-useradd_flush_nscd_cache.patch
+Reviewed-By: Daniel T Chen <crimsun@ubuntu.com>
+Bug-Ubuntu: https://bugs.launchpad.net/ubuntu/+source/smbldap-tools/+bug/814898
+Last-Update: 2011-08-01
+--- a/smbldap-useradd.pl
++++ b/smbldap-useradd.pl
+@@ -402,6 +402,9 @@
+     }
+ 
+     $ldap_master->unbind;
++    # Flush nscd cache to be aligned with the LDAP directory change
++    system "[ -x /usr/sbin/nscd ] && /usr/sbin/nscd -i passwd 2>/dev/null";
++    system "[ -x /usr/sbin/nscd ] && /usr/sbin/nscd -i group 2>/dev/null";
+     exit 0;
+ }
+ 

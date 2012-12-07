@@ -1,0 +1,8 @@
+TODO list for smbldap-tools:
+
+  - Add debconf support to generate the configuration files if it makes sense
+    (I'm not sure, you have to configure a lot of other servers and to generate
+    the tools config file automatically we need a working samba server).
+
+--
+Sergio Talens-Oliag <sto@debian.org>,	Fri, 10 Sep 2004 21:32:34 +0200

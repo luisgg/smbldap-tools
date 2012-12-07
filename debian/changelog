@@ -1,0 +1,182 @@
+smbldap-tools (0.9.9-1ubuntu1) raring; urgency=low
+
+  * Merge from Debian unstable (LP: #1054130). Remaining changes:
+    - Apply patch from rdratlos to resolve being unable to join a Windows
+      7 or Windows 2008 machine to a Samba domain due to the use of cached
+      nss credentials.
+    - 0020_original_doc_html_index.patch: Add index html file.
+
+ -- Logan Rosen <logatronico@gmail.com>  Thu, 06 Dec 2012 23:27:14 -0500
+
+smbldap-tools (0.9.9-1) unstable; urgency=low
+
+  * New upstream release (Closes: #647860, #679935, #680939, #681350)
+  * Previous upstream version closes: #670246
+  * Bumped standard version (no changes needed)
+
+ -- Sergio Talens-Oliag <sto@debian.org>  Tue, 07 Aug 2012 20:28:37 +0200
+
+smbldap-tools (0.9.7-1ubuntu1) precise; urgency=low
+
+  * Merge from debian unstable (LP: #889308).  Remaining changes:
+    - Apply patch from rdratlos to resolve being unable to join a Windows
+      7 or Windows 2008 machine to a Samba domain due to the use of cached
+      nss credentials. (LP: #814898)
+    - 0020_original_doc_html_index.patch: Add index html file.
+
+ -- Leo Iannacone <l3on@ubuntu.com>  Tue, 27 Sep 2011 18:05:13 +0000
+
+smbldap-tools (0.9.7-1) unstable; urgency=low
+
+  * New upstream release
+    (Closes: #480386, #519551, #561941, #568259, #572711, #582902).
+
+ -- Sergio Talens-Oliag <sto@debian.org>  Tue, 27 Sep 2011 15:14:48 +0200
+
+smbldap-tools (0.9.6-1) unstable; urgency=low
+
+  * New upstream release
+  * Bumped standard version (no changes needed)
+  * Add use-Digest-SHA.patch patch to use Digest::SHA from perl core instead
+    of Digest::SHA1. Drop libdigest-sha1-perl from Depends (Closes: #624065).
+    Patch from Salvatore Bonaccorso <carnil@debian.org>.
+
+ -- Sergio Talens-Oliag <sto@debian.org>  Thu, 18 Aug 2011 10:55:45 +0200
+
+smbldap-tools (0.9.5-1ubuntu1) oneiric; urgency=low
+
+  * Apply patch from rdratlos to resolve being unable to join a Windows
+    7 or Windows 2008 machine to a Samba domain due to the use of cached
+    nss credentials. (LP: #814898)
+
+ -- Daniel T Chen <crimsun@ubuntu.com>  Mon, 01 Aug 2011 15:14:32 -0400
+
+smbldap-tools (0.9.5-1) unstable; urgency=low
+
+  * New upstream release (Closes: Bug#548665).
+
+ -- Sergio Talens-Oliag <sto@debian.org>  Thu, 15 Oct 2009 21:34:50 +0200
+
+smbldap-tools (0.9.4-1) unstable; urgency=low
+
+  * New upstream release, development has moved to a new place:
+    https://gna.org/projects/smbldap-tools/.
+    The new upstream version closes some bugs:
+    - smbldap-passwd (make_salt): update shadowMax (to
+      $config{defaultMaxPasswordAge}) entry if script used with root
+      priviledge (Closes: Bug#404109).
+    - current smbldap-groupadd man page documents -o and -p options
+      (Closes: Bug#358381).
+  * Fix README.Debian according to Daniel Lawson's patch (Closes: #359314).
+  * Added Stefan Pfetzing's patch to create a nobody user following the Debian
+    style (Closes: #354092).
+  * The html version of the documentation is missing from the original
+    tarball, I've included a patch that provides a copy downloaded from the
+    web (Closes: Bug#425402, as the updated docs are right).
+  * Thanks to David Schmitt <david@schmitt.edv-bus.at> for providing a set of
+    patches for the package.
+
+ -- Sergio Talens-Oliag <sto@debian.org>  Mon, 24 Sep 2007 13:24:18 +0200
+
+smbldap-tools (0.9.2-3) unstable; urgency=low
+
+  * Added patch to fix UTF-8 usage on smbldap-usermod.
+
+ -- Sergio Talens-Oliag <sto@debian.org>  Fri, 13 Jan 2006 22:02:29 +0100
+
+smbldap-tools (0.9.2-2) unstable; urgency=low
+
+  * Added missing depends (reported by Michael Braun).
+
+ -- Sergio Talens-Oliag <sto@debian.org>  Sat,  7 Jan 2006 17:12:02 +0100
+
+smbldap-tools (0.9.2-1) unstable; urgency=low
+
+  * New upstream release (Closes: Bug#314430).
+
+ -- Sergio Talens-Oliag <sto@debian.org>  Tue,  3 Jan 2006 19:41:59 +0100
+
+smbldap-tools (0.9.1-2) unstable; urgency=low
+
+  * Standars updated, no changes needed.
+  * Included 'configure.pl' with the package docs (Closes: Bug#317833).
+
+ -- Sergio Talens-Oliag <sto@debian.org>  Tue, 12 Jul 2005 13:15:08 +0200
+
+smbldap-tools (0.9.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * Fixed README.Debian; tell the user to use -u or -g options with
+    smbldap-populate to change initial uid or gid (Closes: Bug#314592).
+
+ -- Sergio Talens-Oliag <sto@debian.org>  Tue, 21 Jun 2005 09:35:55 +0200
+
+smbldap-tools (0.9.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * This version adds support to change the default HOME creation mode
+    (Closes: Bug#309303).
+  * Removed patch to change the configuration files paths.
+
+ -- Sergio Talens-Oliag <sto@debian.org>  Fri, 27 May 2005 00:59:40 +0200
+
+smbldap-tools (0.8.8-1) unstable; urgency=low
+
+  * New upstream release (Closes: Bug#306455).
+
+ -- Sergio Talens-Oliag <sto@debian.org>  Tue, 26 Apr 2005 20:15:52 +0200
+
+smbldap-tools (0.8.7-4) unstable; urgency=low
+
+  * Changed package priority to extra, as it depends on packages
+    that have priority extra; I thought lintian and/or linda looked at
+    those things. 
+
+ -- Sergio Talens-Oliag <sto@debian.org>  Sun, 10 Apr 2005 12:49:00 +0200
+
+smbldap-tools (0.8.7-3) unstable; urgency=high
+
+  * Changed the perl dependency to a ${perl:Depends} substitution.
+
+  * Added the dependency on libdigest-sha1-perl (Closes: Bug#298200).
+
+ -- Sergio Talens-Oliag <sto@debian.org>  Sat,  5 Mar 2005 18:51:26 +0100
+
+smbldap-tools (0.8.7-2) unstable; urgency=low
+
+  * Added patch to fix configuration file locations, should have tested it
+    better (Bug#296062).
+
+ -- Sergio Talens-Oliag <sto@debian.org>  Sun, 20 Feb 2005 10:04:19 +0100
+
+smbldap-tools (0.8.7-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Sergio Talens-Oliag <sto@debian.org>  Fri, 18 Feb 2005 23:20:46 +0100
+
+smbldap-tools (0.8.5-3-2) unstable; urgency=low
+
+  * Add libio-socket-ssl-perl to Depends because it is needed to use the
+    package with TLS. Probably it should only be recommended because it is not
+    needed to use the Package without TLS, but in fact it is already
+    recommended from the libnet-ldap-perl package and a bug has been filed
+    anyway (Closes: Bug#286222).
+
+ -- Sergio Talens-Oliag <sto@debian.org>  Thu, 30 Dec 2004 09:26:48 +0100
+
+smbldap-tools (0.8.5-3-1) unstable; urgency=low
+
+  * New upstream release, previous one should have been 0.8.5-2. Anyway I
+    don't understand why upstream uses this numbering scheme.
+
+ -- Sergio Talens-Oliag <sto@debian.org>  Sun, 21 Nov 2004 23:32:13 +0100
+
+smbldap-tools (0.8.5-1) unstable; urgency=low
+
+  * Initial Release (Closes: Bug#270777).
+
+  * First personal package built using cdbs ... really easy ... ;)
+
+ -- Sergio Talens-Oliag <sto@debian.org>  Thu,  9 Sep 2004 11:11:31 +0200
+

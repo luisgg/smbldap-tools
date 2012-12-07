@@ -1,0 +1,40 @@
+#! /bin/sh
+# preinst script for smbldap-tools
+
+set -e
+# summary of how this script can be called:
+#        * <new-preinst> `install'
+#        * <new-preinst> `install' <old-version>
+#        * <new-preinst> `upgrade' <old-version>
+#        * <old-preinst> `abort-upgrade' <new-version>
+#
+# for details, see http://www.debian.org/doc/debian-policy/ or
+# the debian-policy package
+SMBLDAP_CONF="/etc/smbldap-tools/smbldap.conf"
+
+case "$1" in
+    install|upgrade)
+	# Add "userHomeDirectoryMode" for old configuration files
+ 	if test -n "$2" && dpkg --compare-versions "$2" lt "0.9"; then
+		if test -f "$SMBLDAP_CONF" && ! grep -q "^userHomeDirectoryMod" "$SMBLDAP_CONF"; then
+			cat >> $SMBLDAP_CONF << EOF
+
+# Default mode used for user homeDirectory
+userHomeDirectoryMode="700"
+EOF
+		fi
+	fi
+    ;;
+    
+    abort-upgrade)
+    ;;
+
+    *)
+        echo "preinst called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+esac
+
+#DEBHELPER#
+
+exit 0

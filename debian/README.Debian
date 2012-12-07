@@ -1,0 +1,153 @@
+smbldap-tools for Debian
+------------------------
+
+This package comes without config files, adding debconf support is in my TODO
+list.
+  
+To use the tools you need to configure your LDAP server to support the SAMBA
+Schema, configure the SAMBA server to use LDAP as the password database and
+create the smbldap-tools config files to match your installation.
+
+You can find a detailed guide of how to do that reading the *smbldap-tools
+user manual*, available from:
+
+  http://download.gna.org/smbldap-tools/docs/smbldap-tools/
+
+If you don't want to RTFM, here you have a quick guide, but please, if you
+plan to use the tool seriously read the real docs... ;)
+
+LDAP Server Configuration
+=========================
+
+1. Copy the 'samba.schema' to be used in your LDAP server (you can find it in
+'/usr/share/doc/samba-doc/examples/LDAP/samba.schema.gz' after installing the
+samba-doc package):
+
+  zcat /usr/share/doc/samba-doc/examples/LDAP/samba.schema.gz > \
+    /etc/ldap/schema/samba.schema
+
+2. Modify the file '/etc/ldap/slapd.conf' to include the samba schema:
+
+  include	/etc/ldap/schema/samba.schema
+
+3. Optionally add indexes to optimize SAMBA access:
+ 
+  index		uid,uidNumber,gidNumber,memberUid	eq
+  index		cn,mail,surname,givenname		eq,subinitial
+  index		sambaSID				eq
+  index		sambaPrimaryGroupSID			eq
+  index		sambaDomainName				eq
+
+4. Allow users to change their NT and LM Passwords changing the line:
+
+  access to attribute=userPassword
+
+by:
+  
+  access to attrs=userPassword,sambaNTPassword,sambaLMPassword
+
+5. Restart the LDAP server.
+
+SAMBA Server Configuration
+==========================
+
+1. Edit the '/etc/samba/smb.conf' to change the passdb backend from the
+original:
+
+  passdb backend = tdbsam guest
+
+to:
+
+  passdb backend = ldapsam:ldap://127.0.0.1/
+
+(put the correct ldap server address).
+
+2. Add configuration directives for the passdb system (the example assumes the
+'example.com' domain and admin DN 'cn=admin,dc=example,dc=com' and no TLS):
+
+  obey pam restrictions = no
+  
+  ldap admin dn = cn=admin,dc=example,dc=com
+  ldap suffix = dc=example, dc=com
+  ldap group suffix = ou=Groups
+  ldap user suffix = ou=Users
+  ldap machine suffix = ou=Computers
+  ldap idmap suffix = ou=Users
+
+3. More to use the smbldap-tools to change passwords:
+
+  ; Don't use samba's internal LDAP password sync
+  ldap passwd sync = No
+  ; Use an external program to sync the LDAP password
+  unix password sync = Yes
+  passwd program = /usr/sbin/smbldap-passwd -u %u
+  passwd chat = *New*password* %n\n *Retype*new*password* %n\n *all*authentication*tokens*updated*
+
+4. And if you want to administer user and groups from windows add:
+
+  add user script = /usr/sbin/smbldap-useradd -m "%u"
+  ldap delete dn = Yes
+  delete user script = /usr/sbin/smbldap-userdel "%u"
+  add machine script = /usr/sbin/smbldap-useradd -w "%u"
+  add group script = /usr/sbin/smbldap-groupadd -p "%g" 
+  delete group script = /usr/sbin/smbldap-groupdel "%g"
+  add user to group script = /usr/sbin/smbldap-groupmod -m "%u" "%g"
+  delete user from group script = /usr/sbin/smbldap-groupmod -x "%u" "%g"
+  set primary group script = /usr/sbin/smbldap-usermod -g "%g" "%u"
+
+5. Restart samba and add the smbldap admin password to let SAMBA use it:
+
+  /etc/init.d/samba restart
+  smbpasswd -w LDAP_ADMIN_PASSWORD
+
+
+SMBLDAP-TOOLS Configuration
+===========================
+
+1. Start copying the files 'smbldap.conf' and 'smbldap_bind.conf' from
+'/usr/share/doc/smbldap-tools/examples/' to '/etc/smbldap-tools/':
+
+  zcat /usr/share/doc/smbldap-tools/examples/smbldap.conf.gz > \
+    /etc/smbldap-tools/smbldap.conf
+  cp /usr/share/doc/smbldap-tools/examples/smbldap_bind.conf \
+    /etc/smbldap-tools/smbldap_bind.conf
+
+2. Edit the 'smbldap.conf' file; the main parameters to watch out are the 'SID',
+the ldap servers addresses, the TLS settings and the LDAP suffix. 
+
+**NOTE**: To obtain the SID execute the following command with your SAMBA
+server Running:
+
+  net getlocalsid
+
+3. Edit the 'smbldap_bind.conf' file and put there the SMBLDAP administrator's
+DN and Password.
+
+4. Fix file permisions:
+
+  chmod 0644 /etc/smbldap-tools/smbldap.conf
+  chmod 0600 /etc/smbldap-tools/smbldap_bind.conf
+
+5. To initialize the LDAP database invoque the command:
+
+  smbldap-populate
+
+**NOTE**: This makes the tool start adding uids and gids from 1000 (hardcoded
+default), if you want to start from different numbers you can use "-g
+<firstgid>" or "-u <firstuid>" as options to smbldap-populate.
+
+Upgrade from release 0.9.6
+==========================
+
+smbldap-tools 0.9.7 now support sambaNextRid attribute and its value
+in sambaDomain object for new RID allocation instead of obsolete RID
+algorithm by default. (It is for compatibility with Samba 3.0.23c and later.)
+
+If you are upgrading from smbldap-tools 0.9.6 (or older) and/or you
+want to use legacy RID algorithm for new RID allocation, you must
+add "sambaAlgorithmicRidBase: 1000" to your sambaDomain object.
+You can do that by running the `smbldap-upgrade-0.9.6.cmd` 
+available on the `/usr/share/doc/smbldap-tools/` directory.
+
+--
+Sergio Talens-Oliag <sto@debian.org>,  Tue, 27 Sep 2011 10:42:30 +0200

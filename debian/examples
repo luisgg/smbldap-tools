@@ -1,0 +1,5 @@
+doc/migration_scripts
+doc/*.example
+smbldap_bind.conf
+smbldap.conf
+smbldap-upgrade-0.9.6.cmd

@@ -1,0 +1,6 @@
+#!/usr/bin/make -f
+# -*- mode: makefile; coding: utf-8 -*-
+# Copyright © 2009-2011 Sergio Talens-Oliag <sto@debian.org>
+
+%:
+	dh --with quilt $@

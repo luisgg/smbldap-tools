@@ -1,0 +1,13 @@
+Document: smbldap-tools
+Title: Smbldap-tools User Manual
+Author: Jérôme Tournier
+Abstract: This document presents a detailled view of the smbldap-tools scripts
+ and a a step by step explanation of how to set up a Samba3 domain controller.
+Section: System/Administration
+
+Format: pdf
+Files: /usr/share/doc/smbldap-tools/smbldap-tools.pdf.gz
+
+Format: html
+Index: /usr/share/doc/smbldap-tools/smbldap-tools.html
+Files: /usr/share/doc/smbldap-tools/*.html

@@ -1,0 +1,11 @@
+--- a/smbldap-populate.pl
++++ b/smbldap-populate.pl
+@@ -114,7 +114,7 @@ if (!defined($adminUidNumber)) {
+ my $guestUidNumber=$Options{'l'};
+ my $guestRid = 501;
+ if (!defined($guestUidNumber)) {
+-    $guestUidNumber = "999";
++    $guestUidNumber = "65534";
+ } else {
+     if (defined($algorithmicRidBase)) {
+ 	## For backward compatibility with smbldap-tools 0.9.6 and older

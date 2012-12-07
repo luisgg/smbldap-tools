@@ -1,0 +1,20 @@
+Source: smbldap-tools
+Section: admin
+Priority: extra
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+XSBC-Original-Maintainer: Sergio Talens-Oliag <sto@debian.org>
+Build-Depends: debhelper (>= 7.0.50~), quilt
+Build-Depends-Indep: perl
+Standards-Version: 3.9.3.0
+
+Package: smbldap-tools
+Architecture: all
+Depends: ${misc:Depends}, ${perl:Depends}, libnet-ldap-perl, libio-socket-ssl-perl, libcrypt-smbhash-perl, libunicode-maputf8-perl
+Description: Scripts to manage Unix and Samba accounts stored on LDAP
+ Set of scripts to manage data relative to users and groups stored in an LDAP
+ server. The tools manage POSIX, shadow and Samba (3.0 series) accounts and
+ groups.
+ .
+ This package is used to add/del/mod users and groups in the Linux
+ Samba-OpenLDAP Howto
+ <http://download.gna.org/smbldap-tools/docs/samba-ldap-howto/>
