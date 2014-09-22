@@ -1,0 +1,12 @@
+## Makefile.package
+## ======================================================================
+
+PERL_COMMAND=		@PERL_COMMAND@
+PERL_LIBDIR=		@PERL_LIBDIR@
+PERL_DIGEST_SHA=	@PERL_DIGEST_SHA@
+POD2MAN_COMMAND=	@POD2MAN_COMMAND@
+
+SAMBA_BINDIR=		@SAMBA_BINDIR@
+SAMBA_SYSCONFDIR=	@SAMBA_SYSCONFDIR@
+SAMBA_SMB_CONF=		$(SAMBA_SYSCONFDIR)/smb.conf
+

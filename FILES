@@ -1,0 +1,48 @@
+# $Id: FILES 96 2011-09-02 07:27:58Z fumiyas $
+#
+## File listing for SMBLDAP-TOOLS
+
+CONTRIBUTORS		: authors and contributors
+COPYING			: licence
+FILES			: this file listing
+README			: introduction and usage
+TODO			: feature request and bug report list
+ChangeLog		: changelog
+smbldap-config		: script to configure the smbldap.conf
+
+Core:
+=-=-=
+smbldap-groupadd    : add a new LDAP group entry
+			(objectclass: posixGroup)
+smbldap-groupdel    : delete a LDAP group entry
+			(objectclass: posixGroup)
+smbldap-grouplist   : list LDAP group entries
+			(objectclass: posixGroup)
+smbldap-groupmod    : modify a LDAP group entry (or its members)
+			(objectclass: posixGroup)
+smbldap-groupshow   : view a LDAP group entry
+			(objectclass: posixGroup)
+smbldap.conf        : global configuration
+smbldap_bind.conf   : LDAP binding configuration
+smbldap_tools.pm    : functions
+smbldap-useradd     : add a new LDAP user
+			(objectclass: posixAccount and/or sambaSamAccount)
+smbldap-userdel     : delete a LDAP user
+			(objectclass: posixAccount and/or sambaSamAccount)
+smbldap-userlist    : list LDAP users
+			(objectclass: posixAccount and/or sambaSamAccount)
+smbldap-usermod     : modify a LDAP user entry
+			(objectclass: posixAccount and/or sambaSamAccount)
+smbldap-usershow    : view a LDAP user entry
+			(objectclass: posixAccount and/or sambaSamAccount)
+smbldap-passwd      : set and sync LDAP passwdords (Unix and Samba)
+			(replacement for the system passwd utility)
+smbldap-populate    : add a builtin ldif to initialize your LDAP master for
+			smbldap use, or to add a specified ldif
+smbldap-tools.spec  : SPEC file for Red Hat RPM package format
+
+Migration:
+=-=-=-=-=-
+smbldap-migrate-accounts     : add NT sam entries from pwdump to ldap
+smbldap-migrate-groups       : add any LDAP posixGroups from the output of the
+				'net group' NT command

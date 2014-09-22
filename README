@@ -1,0 +1,63 @@
+# $Id: README 90 2011-09-02 03:54:11Z fumiyas $
+
+Latest version may be found at https://gna.org/projects/smbldap-tools/
+
+Bug Report:
+  * Upstream: https://gna.org/bugs/?group=smbldap-tools
+  * Ubuntu:   https://bugs.launchpad.net/ubuntu/+source/smbldap-tools/
+  * Debian:   http://bugs.debian.org/cgi-bin/pkgreport.cgi?src=smbldap-tools
+
+Userful documentations:
+  http://www.islandlinux.org/HOWTO/openldap_samba.html (see bug in nss_ldap)
+
+
+What those tools are for?
+=-=-=-=-=-=-=-=-=-=-=-=-=
+
+A collection of scripts, «over» user{add,del,mod} and group{add,del,mod}
+system tools to manipulate users and groups stored in LDAP directory,
+for DEN system like Samba-LDAP and pam/nss_ldap systems.
+
+Additionnaly, some scripts are designed to ease your migration from
+a Windows NT 4.0 PDC Server to a Samba-LDAP PDC Server (Killer?;-):
+smbldap-populate and doc/migration_scripts/smbldap-migrate.
+
+They are currently used with Samba 3.2 and later.
+
+In the future, some other function may come (like backup and restore,
+Novell migration tools, samba system activity report, dealing with
+mail functions, compliance to RFC2307...): consult TODO.
+
+
+What do SMBLDAP-TOOLS provide?
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+Those tools provide the following functions :
+  * Populate LDAP database with a basic LDIF
+  * Add a user or group
+  * Delete a user or group
+  * Modify all users or groups data (all attributes types stored in
+    posixAccount, posixGroup and sambaSamAccount object class)
+Taking care of :
+  * Staying compatible with all standard system tools options
+    (user/group{add,del,mod})
+  * Be extensible for future developments
+    (manipulation of shadow account options, for example)
+  * Error management, in the way system tools do
+Constraints :
+  * Usage of Perl (portability)
+  * All options must be placed in an external configuration file
+  * English localization
+
+
+What do SMBLDAP-TOOLS deliver?
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+Contents :
+  * Scripts (see FILES)
+  * User documentation in pod format, included in the sources
+    (or just use the -? option)
+
+These tools aim at delivering the same functionality as the corresponding
+system tools
+

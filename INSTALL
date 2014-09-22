@@ -1,0 +1,54 @@
+How To Install SMBLDAP-TOOLS
+======================================================================
+
+Requirements
+======================================================================
+
+For build and installation:
+  * Perl 5.x
+  * make
+
+For runtime:
+  * Perl 5.8.1 or later
+  * Perl Net::LDAP module
+  * Perl Crypt::SmbHash module
+
+Basic install procedure
+======================================================================
+
+  $ ./configure
+  ...
+  $ make
+  ...
+  $ su -
+  Password: xxxxxxxx
+  # make install
+  ...
+
+Basic configuration procedure
+======================================================================
+
+  * Edit smbldap.conf and smbldap_bind.conf file in
+    /usr/local/etc/smbldap-tools directory (by default) to match
+    your environment.
+
+  * Initialize the LDAP DIT
+
+    # smbldap-populate
+
+Upgrade to new release from previous release
+======================================================================
+
+Upgrade from release 0.9.6
+----------------------------------------------------------------------
+
+smbldap-tools 0.9.7 now support sambaNextRid attribute and its value
+in sambaDomain object for new RID allocation instead of obsolete RID
+algorithm by default. (It is for compatibility with Samba 3.0.23c and later.)
+
+If you are upgrading from smbldap-tools 0.9.6 (or older) and/or you
+want to use legacy RID algorithm for new RID allocation, you must
+add "sambaAlgorithmicRidBase: 1000" to your sambaDomain object.
+You can do that by running `./smbldap-upgrade-0.9.6.cmd` in your
+smbldap-tools source tree.
+
