@@ -1,3 +1,9 @@
+smbldap-tools (0.9.9-1ubuntu1~aurex1) precise; urgency=low
+
+  * Rebuild for aurex 12.04 precise
+
+ -- Luis Antonio Garcia Gisbert <luisgg@gmail.com>  Mon, 22 Sep 2014 19:49:47 +0200
+
 smbldap-tools (0.9.9-1ubuntu1) raring; urgency=low
 
   * Merge from Debian unstable (LP: #1054130). Remaining changes:
